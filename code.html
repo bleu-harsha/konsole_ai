@@ -72,8 +72,7 @@
         }
 
         .iframe-container:hover {
-            box-shadow: 0 7px 20px rgb(255,255,255); /* Light blue glow on hover */
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            box-shadow: 0 7px 20px rgba(255, 255, 255, 0.5); /* Light blue glow on hover */
         }
 
         iframe {
@@ -97,14 +96,12 @@
             padding: 20px;
             margin-bottom: 20px;
             backdrop-filter: blur(10px); /* Blurry effect */
-        }
-        
-        .section-container:hover {
-            box-shadow: 0 7px 20px rgb(20,25,151);
-            transition: color 0.3s ease, text-shadow 0.3s ease;
-        
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
+        .section-container:hover {
+            box-shadow: 0 7px 20px rgba(20, 25, 151, 0.8); /* Light blue glow on hover */
+        }
 
         hr {
             border: 1px solid rgba(255, 255, 255, 0.3); /* Translucent HR */
@@ -142,20 +139,18 @@
 
         .profile img:hover {
             filter: brightness(1.2); /* Lighten profile picture on hover */
-            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         .profile h2 {
             color: #141997; /* Extreme blue */
             margin: 10px 0 0;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
             font-size: 2em;
-          }
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
 
         .profile h2:hover {
             color: #87cefa; /* Light blue on hover */
             text-shadow: 0 0 15px #87cefa; /* Light blue glow on hover */
-            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
         /* Styling for the button and message */
@@ -178,26 +173,52 @@
         .button-container button:hover {
             background-color: #87cefa; /* Light blue on hover */
             box-shadow: 0 4px 8px rgba(0, 0, 255, 0.5); /* Light blue glow on hover */
-            transition: color 0.3s ease, text-shadow 0.3s ease;
         }
 
-        .message {
+        .cake-message {
             display: none;
             margin-top: 10px;
             font-size: 1.2em;
-            color: #141997; /* Extreme blue */
-            text-shadow: 0 0 10px #141997; /* Glowing effect */
+            color: #87cefa; /* Light blue */
+            text-shadow: 0 0 10px #87cefa; /* Glowing effect */
+        }
+
+        .cake-message a {
+            color: #87cefa; /* Light blue */
+            text-decoration: none;
             transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .cake-message a:hover {
+            color: #141997; /* Extreme blue on hover */
+            text-shadow: 0 0 15px #141997; /* Extreme blue glow on hover */
+        }
+
+        /* Marquee effect replacement */
+        .marquee {
+            display: inline-block;
+            animation: marquee 10s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
             }
+            to {
+                transform: translateX(-100%);
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
-    <div class="section-container">
-        <h1>Konsole AI</h1>
-        <a href="https://blue-clouds4.github.io/" target="_blank">~blue_clouds</a>
+        <div class="section-container">
+            <h1>Konsole AI</h1>
+            <a href="https://blue-clouds4.github.io/" target="_blank">~blue_clouds</a>
+        </div>
     </div>
-   </div>
+
     <div class="terminal">
         <div class="iframe-container">
             <iframe src="https://blueguyhere-konsolechat.hf.space" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
@@ -207,7 +228,7 @@
     <div class="content">
         <div class="section-container">
             <h2>Inspiration</h2>
-            <p>I was chilling and then later discovered Recess-hacks. This was my first hackathon so i wanted to do something i never did before,something i never really included in my projects,AI✨</p>
+            <p>I was chilling and then later discovered Recess-hacks. This was my first hackathon so I wanted to do something I never did before, something I never really included in my projects—AI✨</p>
             <hr>
         </div>
 
@@ -253,7 +274,16 @@ try {
         
         // Adjust based on the response structure
         const botMessage = data?.generated_text || 'No response from model'; 
-        chatBox.innerHTML += `        </div></code></pre>
+        chatBox.innerHTML += `<div>${botMessage}</div>`;
+    } catch (jsonError) {
+        console.error('Failed to parse JSON:', jsonError); // Log JSON parsing errors
+        chatBox.innerHTML += `<div>Error: Failed to parse JSON response</div>`;
+    }
+} catch (error) {
+    console.error('Fetch error:', error); // Log fetch errors
+    chatBox.innerHTML += `<div>Error: ${error.message}</div>`;
+}
+            </code></pre>
             <hr>
         </div>
 
@@ -275,24 +305,27 @@ try {
             <hr>
         </div>
     </div>
-<div class="profile">
-<div class="section-container">
-        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRrEYFd_1iTEGnP1HmIgskow01-G74a-mUBX0th99V4Oixfi9q7" alt="Profile Picture">
-        <h2>BLUE_</h2>
-    <div class="button-container">
-       <marquee><marquee><marquee> <button onclick="showCakeMessage()"><marquee>i aint the moon to follow you,follow me instead</marquee></button></marquee></marquee></marquee>
-        <div class="cake-message"><a href="https://github.com/blue-clouds4 "> don't you dare click me</a></div>
+
+    <div class="profile">
+        <div class="section-container">
+            <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRrEYFd_1iTEGnP1HmIgskow01-G74a-mUBX0th99V4Oixfi9q7" alt="Profile Picture">
+            <h2>BLUE_</h2>
+            <div class="button-container">
+                <button onclick="showCakeMessage()">
+                    <marquee><marquee><marquee><marquee>I ain't the moon to follow you, follow me instead</marquee></marquee></marquee></marquee>
+                </button>
+                <div class="cake-message">
+                    <a href="https://github.com/blue-clouds4" target="_blank">Don't you dare click me</a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+
     <script>
         function showCakeMessage() {
-            const cakeMessage = document.querySelector('.message');
+            const cakeMessage = document.querySelector('.cake-message');
             cakeMessage.style.display = 'block'; // Display the cake message when the button is clicked
         }
-        //this is over finally lol
     </script>
-     
-    </div>
 </body>
 </html>
-
