@@ -3,66 +3,296 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Console Vibes AI Bot</title>
-    
+    <title>Konsole AI</title>
+    <style>
+        /* Basic reset and styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Consolas', 'Courier New', Courier, monospace; /* Console-like font */
+            background: url('https://i.pinimg.com/originals/6d/d0/84/6dd084a91a77db1bb147f78db22cb51d.gif') no-repeat center center fixed;
+            background-size: cover;
+            color: #e0e0e0;
+            overflow-y: scroll; /* Allow page to be scrollable */
+        }
+
+        /* Centered title and link styling */
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #141997; /* Extreme blue */
+            margin: 0;
+            text-shadow: 0 0 10px #141997; /* Glowing effect */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .header h1:hover {
+            color: #87cefa; /* Light blue on hover */
+            text-shadow: 0 0 15px #87cefa; /* Light blue glow on hover */
+        }
+
+        .header a {
+            display: block;
+            font-size: 1.2em;
+            color: #141997; /* Extreme blue */
+            text-decoration: none;
+            margin-top: 10px;
+            text-shadow: 0 0 10px #141997; /* Glowing effect */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .header a:hover {
+            color: #87cefa; /* Light blue on hover */
+            text-shadow: 0 0 15px #87cefa; /* Light blue glow on hover */
+            text-decoration: underline;
+        }
+
+        /* Styling for the iframe with translucent square */
+        .terminal {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: 80vh;
+            border: 5px solid rgba(255, 255, 255, 0.5); /* Translucent square */
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .iframe-container:hover {
+            box-shadow: 0 7px 20px rgb(255,255,255); /* Light blue glow on hover */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        /* Styling for the content sections */
+        .content {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-container {
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Translucent border */
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.6); /* Translucent background */
+            padding: 20px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px); /* Blurry effect */
+        }
+        
+        .section-container:hover {
+            box-shadow: 0 7px 20px rgb(20,25,151);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        
+        }
+
+
+        hr {
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Translucent HR */
+            margin: 20px 0;
+        }
+
+        h2 {
+            color: #141997; /* Extreme blue */
+            text-shadow: 0 0 10px #141997; /* Glowing effect */
+        }
+
+        pre {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            color: #00ff00;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+        }
+
+        code {
+            color: #ffcc00;
+        }
+
+        .profile {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .profile img {
+            width: 150px;
+            border-radius: 50%;
+            transition: filter 0.3s ease;
+        }
+
+        .profile img:hover {
+            filter: brightness(1.2); /* Lighten profile picture on hover */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .profile h2 {
+            color: #141997; /* Extreme blue */
+            margin: 10px 0 0;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            font-size: 2em;
+          }
+
+        .profile h2:hover {
+            color: #87cefa; /* Light blue on hover */
+            text-shadow: 0 0 15px #87cefa; /* Light blue glow on hover */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        /* Styling for the button and message */
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #141997; /* Extreme blue */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .button-container button:hover {
+            background-color: #87cefa; /* Light blue on hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 255, 0.5); /* Light blue glow on hover */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .message {
+            display: none;
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #141997; /* Extreme blue */
+            text-shadow: 0 0 10px #141997; /* Glowing effect */
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+            }
+    </style>
 </head>
 <body>
-    <div id="console">
-        <div id="output"></div>
-        <textarea id="input" autofocus></textarea>
+    <div class="header">
+    <div class="section-container">
+        <h1>Konsole AI</h1>
+        <a href="https://blue-clouds4.github.io/" target="_blank">~blue_clouds</a>
     </div>
-    <script>
-    const apiKey = "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";
+   </div>
+    <div class="terminal">
+        <div class="iframe-container">
+            <iframe src="https://blueguyhere-konsolechat.hf.space" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
+        </div>
+    </div>
 
-async function query(data) {
+    <div class="content">
+        <div class="section-container">
+            <h2>Inspiration</h2>
+            <p>I was chilling and then later discovered Recess-hacks. This was my first hackathon so i wanted to do something i never did before,something i never really included in my projects,AI✨</p>
+            <hr>
+        </div>
+
+        <div class="section-container">
+            <h2>What it does</h2>
+            <p>This project serves as an easy implementation of AI into a website, allowing users to interact with it as a personal chatbot similar to ChatGPT.</p>
+            <hr>
+        </div>
+
+        <div class="section-container">
+            <h2>How we built it</h2>
+            <p>I seamlessly tucked the Hugging Face Space into my website using an iframe, giving it a moon-like vibe with some custom CSS magic. It's like dressing up a space pod for a moonlight dance party—now, every AI interaction feels like it's floating under a cosmic spotlight! 🌕✨</p>
+            <hr>
+        </div>
+
+        <div class="section-container">
+            <h2>Challenges we ran into</h2>
+            <p>Integrating the AI into the website with API keys and handling cases where the bot was not working as expected.</p>
+            <pre><code>
+try {
+    const response = await fetch('https://api-inference.huggingface.co/models/mistralai/Mistral-Nemo-Instruct-2407', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer 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`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            inputs: userMessage
+        })
+    });
+
+    const responseBody = await response.text(); // Read the response as text
+    console.log('Response Status:', response.status); // Log status code
+    console.log('Response Body:', responseBody); // Log response body
+
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+
     try {
-        const response = await fetch("https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B", {
-            headers: {
-                "Authorization": `Bearer ${apiKey}`,
-                "Content-Type": "application/json",
-            },
-            method: "POST",
-            body: JSON.stringify(data),
-        });
+        const data = JSON.parse(responseBody); // Attempt to parse the response as JSON
+        console.log('Parsed Data:', data); // Log parsed data
+        
+        // Adjust based on the response structure
+        const botMessage = data?.generated_text || 'No response from model'; 
+        chatBox.innerHTML += `        </div></code></pre>
+            <hr>
+        </div>
 
-        if (!response.ok) {
-            const errorText = await response.text(); // Get the error message
-            throw new Error(`HTTP error! Status: ${response.status}, ${errorText}`);
+        <div class="section-container">
+            <h2>Accomplishments</h2>
+            <p>The project features a sleek design and user-friendly interface, providing an easy way to integrate AI into a website.</p>
+            <hr>
+        </div>
+
+        <div class="section-container">
+            <h2>What I learned</h2>
+            <p>This project taught me the value of simplicity in design and the importance of poetic humor in making technology approachable and engaging.</p>
+            <hr>
+        </div>
+
+        <div class="section-container">
+            <h2>What's next</h2>
+            <p>Plans include building a custom reinforcement learning (RL) model to enhance the chatbot's capabilities.</p>
+            <hr>
+        </div>
+    </div>
+<div class="profile">
+<div class="section-container">
+        <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRrEYFd_1iTEGnP1HmIgskow01-G74a-mUBX0th99V4Oixfi9q7" alt="Profile Picture">
+        <h2>BLUE_</h2>
+    <div class="button-container">
+       <marquee><marquee><marquee> <button onclick="showCakeMessage()"><marquee>i aint the moon to follow you,follow me instead</marquee></button></marquee></marquee></marquee>
+        <div class="cake-message"><a href="https://github.com/blue-clouds4 "> don't you dare click me</a></div>
+    </div>
+</div>
+    <script>
+        function showCakeMessage() {
+            const cakeMessage = document.querySelector('.message');
+            cakeMessage.style.display = 'block'; // Display the cake message when the button is clicked
         }
-
-        const result = await response.json();
-        return result;
-    } catch (error) {
-        console.error("Error querying the model:", error);
-        return { error: `Failed to fetch response from the AI model. ${error.message}` };
-    }
-}
-
-document.getElementById("input").addEventListener("keydown", async (event) => {
-    if (event.key === "Enter") {
-        event.preventDefault(); // Prevent the default newline character
-        const input = event.target.value;
-        if (input.trim() === "") return;
-
-        // Show user input
-        const outputDiv = document.getElementById("output");
-        outputDiv.innerHTML += `<div>> ${input}</div>`;
-
-        // Query the model
-        const response = await query({ "inputs": input });
-        if (response.error) {
-            outputDiv.innerHTML += `<div style="color: red;">${response.error}</div>`;
-        } else {
-            outputDiv.innerHTML += `<div>${JSON.stringify(response, null, 2)}</div>`;
-        }
-
-        // Clear input
-        event.target.value = "";
-        outputDiv.scrollTop = outputDiv.scrollHeight; // Scroll to bottom
-    }
-});
-
-
+        //this is over finally lol
     </script>
+     
+    </div>
 </body>
 </html>
+
