@@ -17,6 +17,11 @@
         }
 
         /* Centered title and link styling */
+        .header, .profile, .terminal, .content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .header {
             text-align: center;
             padding: 20px;
@@ -62,7 +67,6 @@
         .iframe-container {
             position: relative;
             width: 100%;
-            max-width: 1200px;
             height: 80vh;
             border: 5px solid rgba(255, 255, 255, 0.5); /* Translucent square */
             border-radius: 10px;
@@ -85,8 +89,6 @@
         /* Styling for the content sections */
         .content {
             padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .section-container {
@@ -246,7 +248,7 @@
 
         <div class="section-container">
             <h2>Challenges we ran into</h2>
-            <p>Integrating the AI into the website with API keys and handling cases where the bot was not working as expected.</p>
+            <p>Integrating the AI into the website with API keys and handling cases where the bot was not working as expected. The previous code snippet:</p>
             <pre><code>
 try {
     const response = await fetch('https://api-inference.huggingface.co/models/mistralai/Mistral-Nemo-Instruct-2407', {
@@ -311,9 +313,9 @@ try {
             <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRrEYFd_1iTEGnP1HmIgskow01-G74a-mUBX0th99V4Oixfi9q7" alt="Profile Picture">
             <h2>BLUE_</h2>
             <div class="button-container">
-                <button onclick="showCakeMessage()">
-                    <marquee><marquee><marquee><marquee>I ain't the moon to follow you, follow me instead</marquee></marquee></marquee></marquee>
-                </button>
+                 <marquee><marquee><marquee><button onclick="showCakeMessage()">
+                    <marquee>I ain't the moon to follow you, follow me instead</marquee></marquee></marquee></marquee>
+                </button></marquee>
                 <div class="cake-message">
                     <a href="https://github.com/blue-clouds4" target="_blank">Don't you dare click me</a>
                 </div>
