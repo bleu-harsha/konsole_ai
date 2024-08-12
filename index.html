@@ -13,18 +13,15 @@
             background: url('https://i.pinimg.com/originals/6d/d0/84/6dd084a91a77db1bb147f78db22cb51d.gif') no-repeat center center fixed;
             background-size: cover;
             color: #e0e0e0;
-            overflow-y: scroll; /* Allow page to be scrollable */
+            overflow-x: hidden; /* Hide horizontal scrollbar */
         }
 
         /* Centered title and link styling */
-        .header, .profile, .terminal, .content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
         .header {
             text-align: center;
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .header h1 {
@@ -62,17 +59,21 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .iframe-container {
             position: relative;
             width: 100%;
-            height: 80vh;
+            max-width: 850px;
+            height: 450px;
             border: 5px solid rgba(255, 255, 255, 0.5); /* Translucent square */
             border-radius: 10px;
             background-color: rgba(0, 0, 0, 0.5); /* Transparent background */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
             transition: box-shadow 0.3s ease;
+            margin: 0 auto; /* Center the iframe container */
         }
 
         .iframe-container:hover {
@@ -89,6 +90,8 @@
         /* Styling for the content sections */
         .content {
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .section-container {
@@ -131,6 +134,8 @@
         .profile {
             text-align: center;
             padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .profile img {
@@ -170,6 +175,7 @@
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            margin: 5px;
         }
 
         .button-container button:hover {
@@ -221,9 +227,19 @@
         </div>
     </div>
 
+    <div class="section-container">
+        <p style="text-align: center; font-size: 1.2em;">Choose an iframe to test/use:</p>
+        <div class="button-container">
+            <button onclick="showIframe('text-gen')">Text Generation</button>
+            <button onclick="showIframe('text-to-image')">Text to Image</button>
+            <button onclick="showIframe('text-to-video')">Text to Video</button>
+            <button onclick="showIframe('text-to-music')">Text to Music</button>
+        </div>
+    </div>
+
     <div class="terminal">
         <div class="iframe-container">
-            <iframe src="https://blueguyhere-konsolechat.hf.space" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
+            <iframe id="iframe-display" src="https://blueguyhere-konsolechat.hf.space" frameborder="0" allowtransparency="true" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -313,9 +329,9 @@ try {
             <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRrEYFd_1iTEGnP1HmIgskow01-G74a-mUBX0th99V4Oixfi9q7" alt="Profile Picture">
             <h2>BLUE_</h2>
             <div class="button-container">
-                 <marquee><marquee><marquee><button onclick="showCakeMessage()">
-                    <marquee>I ain't the moon to follow you, follow me instead</marquee></marquee></marquee></marquee>
-                </button></marquee>
+                <button onclick="showCakeMessage()">
+                    <span class="marquee">I ain't the moon to follow you, follow me instead</span>
+                </button>
                 <div class="cake-message">
                     <a href="https://github.com/blue-clouds4" target="_blank">Don't you dare click me</a>
                 </div>
@@ -324,6 +340,24 @@ try {
     </div>
 
     <script>
+        function showIframe(type) {
+            const iframe = document.getElementById('iframe-display');
+            switch(type) {
+                case 'text-gen':
+                    iframe.src = 'https://blueguyhere-konsolechat.hf.space';
+                    break;
+                case 'text-to-image':
+                    iframe.src = 'https://misterproton-text-to-image-models-playground.static.hf.space';
+                    break;
+                case 'text-to-video':
+                    iframe.src = 'https://kingnish-instant-video.hf.space';
+                    break;
+                case 'text-to-music':
+                    iframe.src = 'https://bilalsardar-lyrics-text-to-music.hf.space';
+                    break;
+            }
+        }
+
         function showCakeMessage() {
             const cakeMessage = document.querySelector('.cake-message');
             cakeMessage.style.display = 'block'; // Display the cake message when the button is clicked
