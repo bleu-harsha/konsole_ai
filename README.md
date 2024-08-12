@@ -1,6 +1,7 @@
 # konsole_ai
 an ai chat box which can be accessed on web,easy to make,easy to use
-![image](https://github.com/user-attachments/assets/d1a81d29-3212-4e4c-aec5-2a45998d7ec9)
+![image](https://github.com/user-attachments/assets/2207c6d2-b803-4119-b8dd-e8b8900eb32f)
+
 
 ## how it works
  * this uses an iframe,simple as that.
