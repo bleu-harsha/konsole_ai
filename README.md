@@ -13,3 +13,4 @@ an ai chat box which can be accessed on web,easy to make,easy to use
 	height="450"
 ></iframe>
 ```
+you can use it [here](https://blue-clouds4.github.io/konsole_ai/)
